@@ -1,13 +1,13 @@
 import { SERVER_PORT } from './globals/enviroment';
-import Server from "./classes/server";
+import Servidor from "./classes/server";
 import router from './routes/routes';
 import bodyParser from "body-parser";
 import cors from "cors";
+import socketIO from 'socket.io'
 
 const nombre = 'Fernando';
-console.log("🚀 ~ file: index.ts ~ line 2 ~ nombre", nombre)
 
-const server = new Server()
+const server = Servidor.instance
 
 server.app.use(bodyParser.urlencoded({extended: true}));
 server.app.use(bodyParser.json());
