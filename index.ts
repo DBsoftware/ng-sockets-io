@@ -3,9 +3,6 @@ import Servidor from "./classes/server";
 import router from './routes/routes';
 import bodyParser from "body-parser";
 import cors from "cors";
-import socketIO from 'socket.io'
-
-const nombre = 'Fernando';
 
 const server = Servidor.instance
 

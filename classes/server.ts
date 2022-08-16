@@ -25,10 +25,11 @@ export default class Servidor{
 
     private escucharsockets(){
         console.log('------ escuchar eventos -----')
-        this.io.on('connection', cliente => {
-            console.log('Nuevo cliente conectado ')
+        this.io.on('connection', cliente => { //conexion cliente servidor cllaback define el cliente 
+            socketes.conectarCLiente(cliente) //cliente es registrado en lista
+            socketes.configurarUsuario(cliente, this.io)
+            socketes.escucharMensajes(cliente, this.io) 
             socketes.desconectar(cliente)
-            socketes.escucharMensajes(cliente, this.io)
         })
     }
 
