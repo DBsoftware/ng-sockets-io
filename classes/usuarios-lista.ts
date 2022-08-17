@@ -17,7 +17,7 @@ export default class UsuariosLista {
     }
 
     public get lista(){
-        return this._lista
+        return this._lista.filter( usuario => usuario.nombre !== 'sin-nombre' )
     }
     public set lista(lista){
         this._lista = lista

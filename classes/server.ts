@@ -15,7 +15,7 @@ export default class Servidor{
         this.app = express();
         this.port = SERVER_PORT
         this.httpServer = new http.Server( this.app )
-        this.io = new Server(this.httpServer)
+        this.io = new Server(this.httpServer, {cors:{origin: true, credentials: true }})
         this.escucharsockets()
     }
 
@@ -26,10 +26,11 @@ export default class Servidor{
     private escucharsockets(){
         console.log('------ escuchar eventos -----')
         this.io.on('connection', cliente => { //conexion cliente servidor cllaback define el cliente 
-            socketes.conectarCLiente(cliente) //cliente es registrado en lista
+            socketes.conectarCLiente(cliente, this.io) //cliente es registrado en lista
             socketes.configurarUsuario(cliente, this.io)
+            socketes.obtenerUsuarios( cliente, this.io );
             socketes.escucharMensajes(cliente, this.io) 
-            socketes.desconectar(cliente)
+            socketes.desconectar(cliente, this.io)
         })
     }
 
